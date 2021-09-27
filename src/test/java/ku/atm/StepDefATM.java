@@ -63,11 +63,14 @@ public class StepDefATM {
     public void i_transfer_to_customer_id(double amount, int toId) throws NotEnoughBalanceException {
         atm.transfer(toId, amount);
     }
-
     @Then("customer id {int} account balance is {float}")
     public void customer_id_account_balance_is(int id, double balance) {
         assertEquals(balance,
                      bank.findCustomer(id).getAccount().getBalance());
+    }
+    @When("I deposit {float} to ATM")
+    public void i_deposit_money(double amount){
+        atm.deposit(amount);
     }
 
 }
